@@ -4,6 +4,10 @@ import 'package:todo_app/models/task_data.dart';
 import 'package:todo_app/widgets/task_tile.dart';
 
 class TasksList extends StatelessWidget {
+  final Function onPressed;
+
+  TasksList(this.onPressed);
+
   @override
   Widget build(BuildContext context) {
     var taskData = Provider.of<TaskData>(context);
@@ -37,6 +41,10 @@ class TasksList extends StatelessWidget {
                       ],
                     ),
                 barrierDismissible: false);
+          },
+          onEdit: () {
+            taskData.setEditIndex(index);
+            onPressed();
           },
         );
       },
